@@ -4,10 +4,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get --no-install-recommends -y install \
     pciutils build-essential git wget \
     lsb-release dpkg-dev curl bsdmainutils fakeroot
-RUN mkdir -p /usr/local/share/tendermint/
+RUN mkdir -p /usr/local/share/lbm/
 
 # Deploy the shell functions library.
-COPY buildlib.sh /usr/local/share/tendermint/
+COPY buildlib.sh /usr/local/share/lbm/
 
 # Create the 'builder' user.
 RUN useradd -ms /bin/bash -U builder
@@ -18,7 +18,7 @@ ENV APP ${APP:-app}
 ENV DEBUG ${DEBUG}
 ENV VERSION unknown
 ENV COMMIT unknown
-ENV LEDGER_ENABLE true
+ENV LEDGER_ENABLED true
 ENV TARGET_PLATFORMS ${TARGET_PLATFORMS:-linux/amd64}
 ENV BUILD_SCRIPT ${BUILD_SCRIPT:-/sources/.build.sh}
 
